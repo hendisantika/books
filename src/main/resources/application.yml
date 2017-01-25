@@ -1,0 +1,17 @@
+spring:
+# DataSource
+  datasource:
+    url: jdbc:mysql://localhost/booksDB?useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+# JPA
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+# Thymeleaf
+  thymeleaf:
+    prefix: classpath:/templates
+    cache: false
+    mode: HTML5
