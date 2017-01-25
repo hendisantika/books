@@ -9,7 +9,7 @@ import javax.persistence.Column
 abstract class LikeTarget {
     @Column(nullable = false)
     var likeCount: Int = 0
-//        private set // testing hendi
+        private set // testing hendi
 
     fun likeUp(): Int = likeCount++
 
