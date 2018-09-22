@@ -1,10 +1,10 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.0.6'
-		springBootVersion = '1.4.3.RELEASE'
+		kotlinVersion = '1.2.61'
+		springBootVersion = '1.5.16.RELEASE'
 		springLoadedVersion = '1.2.5.RELEASE'
 		thymeleafVersion = '3.0.3.RELEASE'
-		mysqlVersion = '5.1.40'
+		mysqlVersion = '5.1.45'
 		flywayVersion = '4.0.3'
 		dbUnitVersion = '2.5.1'
 	}
@@ -46,9 +46,9 @@ configurations {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile("org.springframework.boot:spring-boot-starter-security")
+	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-//	compile("org.thymeleaf:thymeleaf:${thymeleafVersion}")
+	compile("org.thymeleaf:thymeleaf:${thymeleafVersion}")
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
 	compile("mysql:mysql-connector-java:${mysqlVersion}")

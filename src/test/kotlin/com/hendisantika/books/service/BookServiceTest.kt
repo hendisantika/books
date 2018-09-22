@@ -1,9 +1,9 @@
 package com.hendisantika.books.service
 
+//import org.junit.Assert.assertThat
 import com.hendisantika.books.BooksApplication
 import com.hendisantika.books.test.TestDataResources
-//import org.junit.Assert.assertThat
-import org.junit.Assert.*
+import org.junit.Assert.assertThat
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 import org.springframework.test.context.web.WebAppConfiguration
 import javax.transaction.Transactional
 import org.hamcrest.CoreMatchers.`is` as be
-import org.junit.BeforeClass
 
 /**
  * Created by hendisantika on 24/01/17.

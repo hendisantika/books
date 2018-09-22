@@ -13,14 +13,14 @@ import javax.sql.DataSource
  */
 class TestDataResources : ExternalResource() {
     @Autowired
-    lateinit private var dataSource: DataSource
+    private lateinit var dataSource: DataSource
 
     override fun before() {
         var con: DatabaseConnection? = null
         try {
             // テストデータのインサート
             con = DatabaseConnection(dataSource.connection)
-            DatabaseOperation.CLEAN_INSERT.execute(con!!, CsvDataSet(File("src/test/resources/testData")))
+            DatabaseOperation.CLEAN_INSERT.execute(con, CsvDataSet(File("src/test/resources/testData")))
         }finally{
             con?.close()
         }
