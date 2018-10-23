@@ -2,7 +2,6 @@ package com.hendisantika.books.form
 
 import com.hendisantika.books.domain.AuthorityRole
 import com.hendisantika.books.domain.AuthorityUser
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
@@ -19,7 +18,7 @@ class SignUpForm() {
 
     @NotNull
     @Size(min = 6)
-    lateinit private var againPassword: String
+    private lateinit var againPassword: String
 
     private val encoder = BCryptPasswordEncoder()
 

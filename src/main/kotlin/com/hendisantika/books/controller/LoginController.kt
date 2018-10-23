@@ -2,14 +2,6 @@ package com.hendisantika.books.controller
 
 import com.hendisantika.books.form.SignUpForm
 import com.hendisantika.books.repository.AuthorityUserRepository
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Controller
-import org.springframework.validation.BindingResult
-import org.springframework.validation.annotation.Validated
-import org.springframework.web.bind.annotation.ModelAttribute
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.servlet.ModelAndView
 
 /**
  * Created by hendisantika on 24/01/17.

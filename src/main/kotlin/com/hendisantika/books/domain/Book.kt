@@ -9,7 +9,8 @@ import javax.persistence.*
 @Entity
 @Table(name = "book")
 class Book() : LikeTarget() {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     var id: Long? = null
         private set
 
@@ -56,7 +57,7 @@ class Book() : LikeTarget() {
                 likeCount: Int = 0,
                 authors: MutableList<Author> = mutableListOf(),
                 categories: MutableList<Category> = mutableListOf(),
-                publisher: Publisher = Publisher()) : this(){
+                publisher: Publisher = Publisher()) : this() {
         this.id = id
         this.title = title
         this.subTitle = subTitle
