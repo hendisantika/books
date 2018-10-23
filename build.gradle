@@ -1,7 +1,7 @@
 buildscript {
 	ext {
 		kotlinVersion = '1.2.61'
-		springBootVersion = '1.5.16.RELEASE'
+		springBootVersion = '1.5.17.RELEASE'
 		springLoadedVersion = '1.2.5.RELEASE'
 		thymeleafVersion = '3.0.3.RELEASE'
 		mysqlVersion = '5.1.45'
