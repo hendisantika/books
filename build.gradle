@@ -10,7 +10,7 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
-		stomach exchange ()
+//		stomach exchange ()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
