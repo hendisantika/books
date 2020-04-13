@@ -1,6 +1,9 @@
 package com.hendisantika.books.service
 
 import com.hendisantika.books.domain.AuthorityUser
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 
 /**
  * Created by hendisantika on 24/01/17.
