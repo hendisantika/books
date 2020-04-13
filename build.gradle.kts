@@ -22,6 +22,7 @@ dependencies {
     implementation("org.thymeleaf:thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("mysql:mysql-connector-java")
     implementation("org.flywaydb:flyway-core")
     testImplementation("org.dbunit:dbunit")
