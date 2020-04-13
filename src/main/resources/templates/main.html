@@ -29,21 +29,21 @@
     </nav>
     <dl th:each="book : ${page}" th:object="${book}">
         <dt>Title</dt>
-        <dd th:text="*{title}">本の名前</dd>
+        <dd th:text="*{title}">Book name</dd>
         <dt>SubTitle</dt>
-        <dd th:if="*{subTitle != null}" th:text="*{subTitle}">サブタイトル</dd>
+        <dd th:if="*{subTitle != null}" th:text="*{subTitle}">Subtitle</dd>
         <dt>LeadingSentence</dt>
-        <dd th:text="*{leadingSentence}">リード文</dd>
+        <dd th:text="*{leadingSentence}">Read statement</dd>
         <dt>ImagePath</dt>
-        <dd th:text="*{imagePath}">本当は画像を表示するぞ</dd>
+        <dd th:text="*{imagePath}">I'm actually displaying an image</dd>
         <dt>Author</dt>
-        <dd th:each="author : *{authors}" th:text="${author.name}">著者の名前</dd>
+        <dd th:each="author : *{authors}" th:text="${author.name}">Author's name</dd>
         <dt>Category</dt>
-        <dd th:each="category : *{categories}" th:text="${category.name}">カテゴリ名</dd>
+        <dd th:each="category : *{categories}" th:text="${category.name}">Category name</dd>
         <dt>Publisher</dt>
-        <dd th:text="*{publisher.name}">出版社名</dd>
+        <dd th:text="*{publisher.name}">Publisher name</dd>
         <dt>URL</dt>
-        <dd><a href="#" th:href="*{url}" th:text="*{url}">どっかのURL</a></dd>
+        <dd><a href="#" th:href="*{url}" th:text="*{url}">Somewhere URL</a></dd>
     </dl>
     <section th:replace="common/commonParts::#page-nation">
     </section>
