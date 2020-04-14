@@ -18,8 +18,7 @@
     </style>
 </head>
 <body>
-    <header th:replace="common/commonParts::#header">
-    </header>
+    <header th:replace="fragments/commonParts :: header"/>
     <nav>
         <ul>
             <li><a href="#" th:href="@{/main}">Books</a></li>
@@ -45,7 +44,7 @@
         <dt>URL</dt>
         <dd><a href="#" th:href="*{url}" th:text="*{url}">Somewhere URL</a></dd>
     </dl>
-    <section th:replace="common/commonParts::#page-nation">
+    <section th:replace="fragments/commonParts::#page-nation">
     </section>
 </body>
 </html>
