@@ -36,7 +36,7 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
                 .defaultSuccessUrl("/main")
                 .usernameParameter("loginId")
                 .passwordParameter("password")
-                .failureUrl("/login?error")
+                .failureUrl("/login.html?error=true")
                 .permitAll()
 
         http.logout().logoutRequestMatcher(AntPathRequestMatcher("/logout"))

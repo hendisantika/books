@@ -10,7 +10,7 @@ import javax.persistence.*
 @Table(name = "authority_user")
 class AuthorityUser() {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
 
     @Column
@@ -22,7 +22,7 @@ class AuthorityUser() {
     @Column
     var enabled: Int = 1
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "authority_user_role", joinColumns = arrayOf(JoinColumn(name = "user_id")), inverseJoinColumns = arrayOf(JoinColumn(name = "role_id")))
     lateinit var roles: MutableList<AuthorityRole>
 
