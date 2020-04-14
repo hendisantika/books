@@ -11,15 +11,18 @@ import javax.validation.constraints.Size
  */
 class SignUpForm() {
     @NotNull
-    lateinit var loginId: String
+//    lateinit
+    var loginId: String = ""
 
     @NotNull
     @Size(min = 6)
-    lateinit var password: String
+//    lateinit
+    var password: String = ""
 
     @NotNull
     @Size(min = 6)
-    private lateinit var againPassword: String
+//    private lateinit
+    var againPassword: String = ""
 
     private val encoder = BCryptPasswordEncoder()
 
