@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Sign Up Page</title>
+</head>
+<body>
+<form action="#" autocomplete="off" method="post" role="form" th:action="@{/signUp}" th:object="${signUpForm}">
+    <h2>Sign Up</h2>
+    <ul>
+        <li>
+            Your ID : <input name="loginId" placeholder="login id" th:field="*{loginId}" type="text"/>
+        </li>
+        <li>
+            Password : <input name="password" placeholder="password" th:field="*{password}" type="password"/>
+        </li>
+        <li>
+            Again Password : <input name="againPassword" placeholder="password again" th:field="*{againPassword}"
+                                    type="password"/>
+        </li>
+    </ul>
+    <button type="submit">sign Up</button>
+</form>
+</body>
+</html>

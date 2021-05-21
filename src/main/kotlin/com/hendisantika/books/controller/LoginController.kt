@@ -4,6 +4,7 @@ import com.hendisantika.books.form.SignUpForm
 import com.hendisantika.books.repository.AuthorityUserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
@@ -25,9 +26,16 @@ class LoginController {
         return ModelAndView("/login")
     }
 
+
+    @GetMapping("/signUp")
+    fun signUp(model: Model): String {
+        model.addAttribute("signUpForm", SignUpForm())
+        return "/signup"
+    }
+
     @PostMapping("/signUp")
     fun signUp(@ModelAttribute @Validated signUpForm: SignUpForm, result: BindingResult, model: ModelAndView): ModelAndView {
-        if(result.hasErrors()) return model.apply { viewName = "/login?error" }
+        if (result.hasErrors()) return model.apply { viewName = "/login?error=true" }
 
         authorityUserRepository.save(signUpForm.toAuthorityUser())
 

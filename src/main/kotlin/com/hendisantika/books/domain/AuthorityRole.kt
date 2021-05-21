@@ -10,7 +10,7 @@ import javax.persistence.*
 @Table(name = "authority_role")
 class AuthorityRole() {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null
         private set
 
