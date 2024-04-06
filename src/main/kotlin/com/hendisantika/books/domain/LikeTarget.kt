@@ -1,6 +1,6 @@
 package com.hendisantika.books.domain
 
-import javax.persistence.Column
+import jakarta.persistence.Column
 
 /**
  * Created by hendisantika on 24/01/17.
