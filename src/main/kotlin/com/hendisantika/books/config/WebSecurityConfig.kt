@@ -31,7 +31,8 @@ class WebSecurityConfig {
             .csrf { csrf -> csrf.disable() }
             .authorizeHttpRequests { authz ->
                 authz
-                    .requestMatchers("/css/**", "/img/**", "/js**", "/signUp").permitAll()
+                    .requestMatchers("/css/**", "/img/**", "/js**", "/signUp", "/login", "/main").permitAll()
+                    .requestMatchers("/swagger-ui", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
                     .anyRequest().authenticated()
             }
             .formLogin { formLogin ->
