@@ -1,6 +1,6 @@
 package com.hendisantika.books.domain
 
-import javax.persistence.*
+import jakarta.persistence.*
 
 /**
  * Created by hendisantika on 24/01/17.
