@@ -13,7 +13,8 @@ COPY gradle/ gradle/
 COPY src/ src/
 
 # Build the application (excluding tests for faster build)
-RUN gradle clean build -x test --no-daemon
+RUN gradle clean build -x test --no-daemon && \
+    ls -la /app/build/libs/
 
 # Stage 2: Create the runtime image
 FROM openjdk:25-jdk-slim AS runtime
@@ -30,8 +31,9 @@ RUN groupadd -r spring && useradd -r -g spring spring
 # Set working directory
 WORKDIR /app
 
-# Copy the built JAR from builder stage
-COPY --from=builder /app/build/libs/books-0.0.1-SNAPSHOT.jar app.jar
+# Copy the built Spring Boot JAR from builder stage
+RUN --mount=from=builder,source=/app/build/libs,target=/tmp/libs \
+    find /tmp/libs -name "books-*-SNAPSHOT.jar" ! -name "*-plain.jar" -exec cp {} app.jar \;
 
 # Change ownership to application user
 RUN chown -R spring:spring /app
