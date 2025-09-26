@@ -11,8 +11,8 @@ plugins {
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
 java {
-    sourceCompatibility = JavaVersion.VERSION_25
-    targetCompatibility = JavaVersion.VERSION_25
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 
@@ -52,4 +52,17 @@ tasks.withType<JavaCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    jvmArgs(
+        "--enable-native-access=ALL-UNNAMED",
+        "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+        "--add-opens", "java.base/java.util=ALL-UNNAMED"
+    )
+}
+
+tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
+    jvmArgs(
+        "--enable-native-access=ALL-UNNAMED",
+        "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+        "--add-opens", "java.base/java.util=ALL-UNNAMED"
+    )
 }
