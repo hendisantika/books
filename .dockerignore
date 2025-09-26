@@ -1,0 +1,53 @@
+# Docker ignore file for Books Spring Boot Application
+
+# Build outputs
+build/
+target/
+*.jar
+*.war
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Docker files (don't need to copy these during build)
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Node modules (if any)
+node_modules/
+
+# Gradle wrapper jar (will be downloaded)
+!gradle/wrapper/gradle-wrapper.jar
+
+# Test outputs
+.gradle/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Documentation (optional, uncomment if you don't want to include)
+# README.md
+# docs/

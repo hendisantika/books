@@ -3,6 +3,7 @@
 !gradle/wrapper/gradle-wrapper.jar
 logs
 mysql_data
+target
 
 ### STS ###
 .apt_generated

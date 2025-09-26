@@ -1,0 +1,80 @@
+services:
+  # MySQL 9.4.0 Database
+  mysql:
+    image: mysql:9.4.0
+    container_name: books-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: booksDB
+      MYSQL_USER: yu71
+      MYSQL_PASSWORD: 53cret
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3309:3306"
+    expose: [ "3309" ]
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    networks:
+      - books-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "yu71", "-p53cret" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # Spring Boot Application
+  books-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: books-spring-app
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/booksDB?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Jakarta&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: yu71
+      SPRING_DATASOURCE_PASSWORD: 53cret
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      JAVA_OPTS: -Xmx512m -Xms256m --enable-native-access=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - books-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 90s
+
+  # PHPMyAdmin for Database Management (Optional)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: books-phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: yu71
+      PMA_PASSWORD: 53cret
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8081:80"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - books-network
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  books-network:
+    driver: bridge
