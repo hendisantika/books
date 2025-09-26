@@ -111,14 +111,22 @@ books/
 │   │   │   ├── repository/      # Data access layer
 │   │   │   └── service/         # Business logic
 │   │   └── resources/
-│   │       ├── application.yml  # Main configuration
-│   │       ├── application-dev.yml # Development profile
+│   │       ├── application.yml      # Main configuration
+│   │       ├── application-dev.yml  # Development profile
+│   │       ├── application-docker.yml # Docker profile
 │   │       ├── templates/       # Thymeleaf templates
 │   │       └── db/migration/    # Database migrations
 │   └── test/                    # Test classes
+├── docker/
+│   └── mysql/
+│       └── init/                # MySQL initialization scripts
 ├── gradle/                      # Gradle wrapper
 ├── build.gradle.kts            # Build configuration
 ├── gradle.properties           # Gradle properties with Java 25 support
+├── Dockerfile                  # Multi-stage Docker build
+├── docker-compose.yml          # Docker services configuration
+├── docker-build.sh            # Docker management script
+├── .dockerignore              # Docker ignore file
 └── run-with-java25.sh         # Java 25 launcher script
 ```
 
@@ -131,6 +139,16 @@ books/
 - **H2 Console**: Enabled
 - **SQL Logging**: Enabled
 - **Flyway**: Disabled (uses Hibernate auto-DDL)
+
+### Docker Profile (`docker`)
+
+- **Database**: MySQL 9.4.0 container
+- **Port**: 8080
+- **Username**: yu71
+- **Password**: 53cret
+- **Flyway**: Enabled for database migrations
+- **Health Checks**: Enabled with Actuator
+- **PHPMyAdmin**: Available for database management
 
 ### Production Profile (`default`)
 
@@ -198,13 +216,66 @@ The following JVM arguments are required for Java 25:
 
 ## 🚀 Deployment
 
-### Docker Deployment (Future Enhancement)
+### Docker Deployment (Recommended)
 
-```dockerfile
-FROM openjdk:25-jdk-slim
-COPY build/libs/books-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 8083
-ENTRYPOINT ["java", "--enable-native-access=ALL-UNNAMED", "--add-opens=java.base/java.lang=ALL-UNNAMED", "-jar", "/app.jar"]
+The application includes comprehensive Docker support with MySQL 9.4.0 integration.
+
+#### Quick Docker Start
+
+```bash
+# Start all services (MySQL + Spring Boot app)
+./docker-build.sh up
+
+# Or using docker-compose directly
+docker-compose up -d
+```
+
+#### Docker Services
+
+| Service             | URL                                   | Description         |
+|---------------------|---------------------------------------|---------------------|
+| **Spring Boot App** | http://localhost:8080                 | Main application    |
+| **MySQL 9.4.0**     | localhost:3306                        | Database server     |
+| **PHPMyAdmin**      | http://localhost:8081                 | Database management |
+| **Swagger UI**      | http://localhost:8080/swagger-ui.html | API documentation   |
+| **Health Check**    | http://localhost:8080/actuator/health | Application health  |
+
+#### Database Configuration
+
+- **Host**: localhost:3306
+- **Database**: booksDB
+- **Username**: yu71
+- **Password**: 53cret
+- **Root Password**: rootpassword
+
+#### Docker Commands
+
+```bash
+# Build images
+./docker-build.sh build
+
+# Start services
+./docker-build.sh up
+
+# View logs
+./docker-build.sh logs
+./docker-build.sh logs books-app    # App logs only
+./docker-build.sh logs mysql        # MySQL logs only
+
+# Stop services
+./docker-build.sh down
+
+# Restart services
+./docker-build.sh restart
+
+# Rebuild everything
+./docker-build.sh rebuild
+
+# Clean up
+./docker-build.sh clean
+
+# Show service status
+./docker-build.sh status
 ```
 
 ### JAR Deployment
