@@ -32,8 +32,7 @@ RUN groupadd -r spring && useradd -r -g spring spring
 WORKDIR /app
 
 # Copy the built Spring Boot JAR from builder stage
-RUN --mount=from=builder,source=/app/build/libs,target=/tmp/libs \
-    find /tmp/libs -name "books-*-SNAPSHOT.jar" ! -name "*-plain.jar" -exec cp {} app.jar \;
+COPY --from=builder /app/build/libs/books-0.0.1-SNAPSHOT.jar app.jar
 
 # Change ownership to application user
 RUN chown -R spring:spring /app

@@ -11,8 +11,9 @@ plugins {
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
 }
 
 
@@ -38,6 +39,10 @@ dependencies {
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("org.dbunit:dbunit:2.7.3")
+    testImplementation("com.github.springtestdbunit:spring-test-dbunit:1.3.0")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.hamcrest:hamcrest:2.2")
 }
 
 tasks.withType<KotlinCompile> {
@@ -66,4 +71,9 @@ tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
         "--add-opens", "java.base/java.lang=ALL-UNNAMED",
         "--add-opens", "java.base/java.util=ALL-UNNAMED"
     )
+}
+
+// Disable plain JAR generation for Docker build
+tasks.jar {
+    enabled = false
 }

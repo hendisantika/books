@@ -1,0 +1,4 @@
+#!/bin/bash
+# Gradle wrapper script using Java 21 for compatibility
+export JAVA_HOME=/Users/hendisantika/Library/Java/JavaVirtualMachines/corretto-21.0.8/Contents/Home
+exec ./gradlew "$@"

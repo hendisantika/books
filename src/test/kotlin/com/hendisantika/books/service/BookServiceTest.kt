@@ -1,26 +1,19 @@
 package com.hendisantika.books.service
 
 //import org.junit.Assert.assertThat
-import com.hendisantika.books.BooksApplication
 import com.hendisantika.books.test.TestDataResources
-import org.junit.Assert.assertThat
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Rule
-import org.junit.Test
 import org.junit.jupiter.api.Test
-import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.SpringApplicationConfiguration
-import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.context.web.WebAppConfiguration
-import javax.transaction.Transactional
+import org.springframework.transaction.annotation.Transactional
 import org.hamcrest.CoreMatchers.`is` as be
 
 /**
  * Created by hendisantika on 24/01/17.
  */
 
-@RunWith(SpringRunner::class)
-@SpringApplicationConfiguration(BooksApplication::class)
 @WebAppConfiguration
 class BookServiceTest {
     @Rule
