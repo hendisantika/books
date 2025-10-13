@@ -42,7 +42,7 @@ dependencies {
     testImplementation("org.dbunit:dbunit:2.7.3")
     testImplementation("com.github.springtestdbunit:spring-test-dbunit:1.3.0")
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.hamcrest:hamcrest:2.2")
+    testImplementation("org.hamcrest:hamcrest:3.0")
 }
 
 tasks.withType<KotlinCompile> {
